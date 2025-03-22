@@ -1,0 +1,25 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools >= 64"]
+
+[project]
+authors = [
+  {name = "lryan599", email = "lonxinyi@qq.com"},
+]
+dependencies = [
+  "networkx",
+  "lancedb",
+  "pandas",
+  "litellm",
+  "fastapi",
+  "uvicorn",
+  "python-dotenv",
+]
+description = "A simple graphrag engine."
+license = {text = "MIT"}
+name = "grageng"
+readme = "README.md"
+version = "0.1"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
