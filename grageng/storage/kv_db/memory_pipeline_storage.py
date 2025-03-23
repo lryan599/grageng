@@ -5,10 +5,10 @@
 
 from typing import TYPE_CHECKING, Any
 
-from graphrag.storage.file_pipeline_storage import FilePipelineStorage
+from grageng.storage.kv_db.file_pipeline_storage import FilePipelineStorage
 
 if TYPE_CHECKING:
-    from graphrag.storage.pipeline_storage import PipelineStorage
+    from grageng.storage.kv_db.base import PipelineStorage
 
 
 class MemoryPipelineStorage(FilePipelineStorage):

@@ -34,15 +34,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
-
-@app.get("/")
-async def read_root():
-    # 使用自定义日志记录器记录请求信息
-    logger.info("Received a request to the root endpoint.")
-    return {"Hello": "World"}
-
-
 app.include_router(health_router)
 
 

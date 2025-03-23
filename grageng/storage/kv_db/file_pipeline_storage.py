@@ -16,9 +16,7 @@ import aiofiles
 from aiofiles.os import remove
 from aiofiles.ospath import exists
 
-from graphrag.logger.base import ProgressLogger
-from graphrag.logger.progress import Progress
-from graphrag.storage.pipeline_storage import (
+from grageng.storage.kv_db.base import (
     PipelineStorage,
     get_timestamp_formatted_with_local_tz,
 )
@@ -42,7 +40,6 @@ class FilePipelineStorage(PipelineStorage):
         self,
         file_pattern: re.Pattern[str],
         base_dir: str | None = None,
-        progress: ProgressLogger | None = None,
         file_filter: dict[str, Any] | None = None,
         max_count=-1,
     ) -> Iterator[tuple[str, dict[str, Any]]]:
@@ -77,8 +74,8 @@ class FilePipelineStorage(PipelineStorage):
                     num_filtered += 1
             else:
                 num_filtered += 1
-            if progress is not None:
-                progress(_create_progress_status(num_loaded, num_filtered, num_total))
+            # if progress is not None:
+            #     progress(_create_progress_status(num_loaded, num_filtered, num_total))
 
     async def get(
         self, key: str, as_bytes: bool | None = False, encoding: str | None = None
@@ -171,13 +168,3 @@ def create_file_storage(**kwargs: Any) -> PipelineStorage:
     base_dir = kwargs["base_dir"]
     log.info("Creating file storage at %s", base_dir)
     return FilePipelineStorage(root_dir=base_dir)
-
-
-def _create_progress_status(
-    num_loaded: int, num_filtered: int, num_total: int
-) -> Progress:
-    return Progress(
-        total_items=num_total,
-        completed_items=num_loaded + num_filtered,
-        description=f"{num_loaded} files loaded ({num_filtered} filtered)",
-    )
