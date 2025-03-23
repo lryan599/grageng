@@ -1,29 +1,22 @@
+import logging
 import os
 from dataclasses import dataclass
 from typing import Any, final
-import numpy as np
-
-from lightrag.types import KnowledgeGraph, KnowledgeGraphNode, KnowledgeGraphEdge
-from lightrag.utils import logger
-from lightrag.base import BaseGraphStorage
-
-import pipmaster as pm
-
-if not pm.is_installed("networkx"):
-    pm.install("networkx")
-
-if not pm.is_installed("graspologic"):
-    pm.install("graspologic")
 
 import networkx as nx
-from graspologic import embed
+import numpy as np
+from lightrag.types import KnowledgeGraph, KnowledgeGraphEdge, KnowledgeGraphNode
+
+from grageng.storage.graph_db.base import BaseGraphStorage
+
 from .shared_storage import (
     get_storage_lock,
     get_update_flag,
-    set_all_update_flags,
     is_multiprocess,
+    set_all_update_flags,
 )
 
+logger = logging.getLogger(__name__)
 MAX_GRAPH_NODES = int(os.getenv("MAX_GRAPH_NODES", 1000))
 
 

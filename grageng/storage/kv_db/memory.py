@@ -5,7 +5,7 @@
 
 from typing import TYPE_CHECKING, Any
 
-from grageng.storage.kv_db.file_pipeline_storage import FilePipelineStorage
+from grageng.storage.kv_db.file import FilePipelineStorage
 
 if TYPE_CHECKING:
     from grageng.storage.kv_db.base import PipelineStorage

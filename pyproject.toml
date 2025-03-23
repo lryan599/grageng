@@ -14,6 +14,7 @@ dependencies = [
   "fastapi",
   "uvicorn",
   "python-dotenv",
+  "aiofiles"
 ]
 description = "A simple graphrag engine."
 name = "grageng"
