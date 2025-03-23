@@ -16,10 +16,12 @@ dependencies = [
   "python-dotenv",
 ]
 description = "A simple graphrag engine."
-license = {text = "MIT"}
 name = "grageng"
 readme = "README.md"
 version = "0.1"
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.setuptools]
+packages = ["grageng"]
